@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "weather-forecast-8f1a2": {
+      "hosting": {
+        "weather-forecast": [
+          "weather-forecast-8f1a2"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "weather-forecast-8f1a2"
+  }
+}

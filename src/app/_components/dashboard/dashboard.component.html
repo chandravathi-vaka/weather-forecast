@@ -1,6 +1,14 @@
 <form [formGroup]="form" (ngSubmit)="handleFormSubmit()">
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" formControlName="searchText" placeholder="Enter city name">
-    <button class="btn btn-outline-secondary" type="submit">Search</button>
-  </div>
+  <mat-form-field appearance="outline" floatLabel="always">
+    <input formControlName="searchText" placeholder="Enter city name" matInput>
+    <button mat-icon-button matSuffix type="submit">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
 </form>
+<h2>Searched City List</h2>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let item of forecastData$ | async">
+    <a [routerLink]="['city', item.id]">{{item.location}}</a>
+  </li>
+</ul>

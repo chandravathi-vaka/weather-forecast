@@ -6,3 +6,11 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.mat-form-field {
+  .mat-form-field-infix {
+    border: 0px;
+  }
+  .mat-form-field-suffix {
+    align-self: center;
+  }
+}

@@ -1,0 +1,17 @@
+<div *ngIf="cityForecastId; else noDataExistRef">
+  <ul *ngIf="cityForecastData" class="list-unstyled">
+    <li>Location: {{cityForecastData.location}}</li>
+    <li>Created Date: {{cityForecastData.date | date: 'shortDate'}}</li>
+    <li class="list-group">
+      <div *ngFor="let listItem of cityForecastData.forecastData.list" class="list-group-item">
+        Date: {{listItem.dt_txt | date: 'shortDate'}}
+        Humidity: {{listItem.main.humidity}}
+        Temparature: {{listItem.main.temp}}
+      </div>
+    </li>
+  </ul>
+  <a [routerLink]="['/']">Back</a>
+</div>
+<ng-template #noDataExistRef>
+No Data found for {{cityForecastId} Id}
+</ng-template>

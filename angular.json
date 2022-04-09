@@ -106,6 +106,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "weather-forecast:build:production",
+            "firebaseProject": "weather-forecast-8f1a2",
+            "firebaseHostingSite": "weather-forecast-8f1a2"
+          }
         }
       }
     }
