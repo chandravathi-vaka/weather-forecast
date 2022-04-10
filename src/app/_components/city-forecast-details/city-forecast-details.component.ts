@@ -10,10 +10,11 @@ import { OpenWeatherService } from 'src/app/_services/open-weather.service';
   styleUrls: ['./city-forecast-details.component.scss']
 })
 export class CityForecastDetailsComponent implements OnInit {
-
+  public pageTitle: string = `Weather Forecast of City`;
   public cityForecastData: IOwFireStoreCity | null = null;
 
   constructor(public router: ActivatedRoute, private owService: OpenWeatherService) { }
+  displayedColumns: string[] = ['serial', 'date', 'humidity', 'temperature', 'weather']
 
   public get cityForecastId() { return this.router.snapshot.params['id']; }
 

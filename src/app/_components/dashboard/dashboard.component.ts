@@ -81,7 +81,9 @@ export class DashboardComponent {
     }
   };
 
-  constructor(private owService: OpenWeatherService) { }
+  constructor(private owService: OpenWeatherService) {
+    this.showLatestForecastData();
+  }
 
   public get searchTextVal() { return this.form.value.searchText ? this.form.value.searchText.trim() : ''; }
 
@@ -124,6 +126,17 @@ export class DashboardComponent {
       }
     });
     return newChartOptions;
+  }
+
+  showLatestForecastData() {
+    const lastsearchedItem =  this.owService.getRecentyAddedItem();
+    lastsearchedItem.then(item => {
+      item.docs.forEach(res => {
+        console.log('Recently searched Item');
+        this.humidityChartOptions = this.getUpdatedChartOptions(this.humidityChartOptions, res.data() as IOwFireStoreCity, 'humidity');
+        this.temperatureChartOptions = this.getUpdatedChartOptions(this.temperatureChartOptions, res.data() as IOwFireStoreCity, 'temp');
+      })
+    })
   }
 
 }

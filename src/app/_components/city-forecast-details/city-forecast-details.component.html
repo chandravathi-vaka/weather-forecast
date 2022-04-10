@@ -1,17 +1,43 @@
 <div *ngIf="cityForecastId; else noDataExistRef">
-  <ul *ngIf="cityForecastData" class="list-unstyled">
-    <li>Location: {{cityForecastData.location}}</li>
-    <li>Created Date: {{cityForecastData.date | date: 'shortDate'}}</li>
-    <li class="list-group">
-      <div *ngFor="let listItem of cityForecastData.forecastData.list" class="list-group-item">
-        Date: {{listItem.dt_txt | date: 'shortDate'}}
-        Humidity: {{listItem.main.humidity}}
-        Temparature: {{listItem.main.temp}}
-      </div>
-    </li>
-  </ul>
-  <a [routerLink]="['/']">Back</a>
+  <ng-container *ngIf="cityForecastData">
+    <ul class="list-unstyled my-3">
+      <li><strong>City name:</strong> {{cityForecastData.location}}</li>
+      <li><strong>Created Date:</strong> {{cityForecastData.date | date: 'short'}}</li>
+    </ul>
+    <table mat-table [dataSource]="cityForecastData?.forecastData?.list || []" class="w-100">
+
+      <ng-container matColumnDef="serial">
+        <th mat-header-cell *matHeaderCellDef> S.No </th>
+        <td mat-cell *matCellDef="let item; let idx = index"> {{idx + 1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let item"> {{item.dt_txt | date: 'shortDate'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="humidity">
+        <th mat-header-cell *matHeaderCellDef> Humidity </th>
+        <td mat-cell *matCellDef="let item">{{item.main.humidity}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="temperature">
+        <th mat-header-cell *matHeaderCellDef> Temperature </th>
+        <td mat-cell *matCellDef="let item"> {{item.main.temp}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="weather">
+        <th mat-header-cell *matHeaderCellDef> Weather Condition </th>
+        <td mat-cell *matCellDef="let item">
+          <span *ngFor="let w of item.weather">{{w.description}} </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-container>
 </div>
 <ng-template #noDataExistRef>
-No Data found for {{cityForecastId} Id}
+  No Data found for {{cityForecastId}} Id
 </ng-template>

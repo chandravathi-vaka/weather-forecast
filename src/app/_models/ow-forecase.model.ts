@@ -1,6 +1,6 @@
 export interface IOwFireStoreCity {
   forecastData: IOwForecastResponse;
-  date: string;
+  date: number;
   location: string;
   id?: string;
 }
