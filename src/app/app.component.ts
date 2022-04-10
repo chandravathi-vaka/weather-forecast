@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'weather-forecast';
+  private _pageTitle: string = '';
+  constructor(){}
+
+  public get pageTitle() { return this._pageTitle; }
+
+  public onRouterActivate(component: any) {
+    this._pageTitle = component?.pageTitle;
+  }
 }

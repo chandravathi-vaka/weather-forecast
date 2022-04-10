@@ -29,9 +29,10 @@ export class OpenWeatherService {
   public addItem(searchString: string, forecastData: IOwForecastResponse) {
     this._showLoader = true;
     const owRef = collection(this.firestore, 'forecast-report');
-    return addDoc(owRef, { date: new Date().toISOString(), location: searchString, forecastData } as IOwFireStoreCity).then(res => {
+    const cityData: IOwFireStoreCity = { date: new Date().toISOString(), location: searchString, forecastData };
+    return addDoc(owRef, cityData).then(res => {
       this._showLoader = false;
-      return res;
+      return cityData;
     });
   }
 

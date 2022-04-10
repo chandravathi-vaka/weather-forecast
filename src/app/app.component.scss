@@ -1,3 +1,11 @@
 main {
   padding: 0.75rem;
+  border-left: 1px solid #dedede;
+}
+.drawer-container {
+  min-height: 100%;
+}
+aside {
+  height: 100vh;
+  padding-right: 0px;
 }

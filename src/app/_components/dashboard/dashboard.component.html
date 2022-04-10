@@ -1,14 +1,15 @@
-<form [formGroup]="form" (ngSubmit)="handleFormSubmit()">
-  <mat-form-field appearance="outline" floatLabel="always">
-    <input formControlName="searchText" placeholder="Enter city name" matInput>
+<form [formGroup]="form" (ngSubmit)="handleFormSubmit()" class="pt-3 d-flex justify-content-center">
+  <mat-form-field appearance="outline" floatLabel="always" class="search-field">
+    <input formControlName="searchText" placeholder="Enter city name" autocomplete="off" matInput>
     <button mat-icon-button matSuffix type="submit">
       <mat-icon>search</mat-icon>
     </button>
   </mat-form-field>
 </form>
-<h2>Searched City List</h2>
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let item of forecastData$ | async">
-    <a [routerLink]="['city', item.id]">{{item.location}}</a>
-  </li>
-</ul>
+<ng-template [ngIf]="humidityChartOptions && humidityChartOptions.series.length > 0">
+  <highcharts-chart [Highcharts]="Highcharts" [options]="humidityChartOptions"></highcharts-chart>
+</ng-template>
+<ng-template [ngIf]="temperatureChartOptions && temperatureChartOptions.series.length > 0">
+  <highcharts-chart [Highcharts]="Highcharts" [options]="temperatureChartOptions"></highcharts-chart>
+</ng-template>
+

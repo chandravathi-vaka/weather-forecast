@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 import { MaterialModule } from './_modules/material.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,13 +18,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './_components/header/header.component';
 import { DashboardComponent } from './_components/dashboard/dashboard.component';
 import { CityForecastDetailsComponent } from './_components/city-forecast-details/city-forecast-details.component';
+import { CityListComponent } from './_components/city-list/city-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DashboardComponent,
-    CityForecastDetailsComponent
+    CityForecastDetailsComponent,
+    CityListComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { CityForecastDetailsComponent } from './_components/city-forecast-detail
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HighchartsChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

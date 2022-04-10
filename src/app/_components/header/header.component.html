@@ -1,6 +1,10 @@
 <mat-toolbar color="primary">
-  <header class="container d-flex align-items-center">
+  <header class="d-flex align-items-center">
     <mat-icon class="me-1">ac_unit</mat-icon>
     <div>Weather Forecast</div>
   </header>
 </mat-toolbar>
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['/']" routerLinkActive="active">Search</a>
+  <a mat-list-item [routerLink]="['/city']" routerLinkActive="active">City List</a>
+</mat-nav-list>

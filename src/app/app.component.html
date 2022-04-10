@@ -1,4 +1,11 @@
-<app-header></app-header>
-<main class="container">
-  <router-outlet></router-outlet>
-</main>
+<div class="row col-sm-12">
+  <aside class="col-md-3 col-sm-12">
+    <app-header></app-header>
+  </aside>
+  <main class="container col-md-9 col-sm-12 px-0 pt-0">
+    <mat-toolbar>{{pageTitle}}</mat-toolbar>
+    <div class="px-3">
+      <router-outlet (activate)="onRouterActivate($event)"></router-outlet>
+    </div>
+  </main>
+</div>
